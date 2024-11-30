@@ -27,8 +27,17 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag codeyaazhnila/repo1/sampleapp:${{ github.sha }}
+    - name: Log in to Docker Hub using PAT
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Push Docker image
+      run: docker push codeyaazhnila/repo1/sampleapp:${{ github.sha }}
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.4.3
       with:
         name: artifact1
-    
+        path: build_output/
