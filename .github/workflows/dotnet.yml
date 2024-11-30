@@ -41,3 +41,20 @@ jobs:
       with:
         name: artifact
         path: build_output/
+    
+    # Added AKS deployment steps
+    - name: Set up Kubernetes
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'latest'
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Get AKS credentials
+      run: az aks get-credentials --resource-group YOUR_RESOURCE_GROUP --name YOUR_AKS_CLUSTER_NAME
+
+    - name: Deploy to AKS
+      run: kubectl apply -f kubernetes_deployment.yaml
