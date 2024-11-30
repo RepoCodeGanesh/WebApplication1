@@ -35,7 +35,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Push Docker image
-      run: docker push codeyaazhnila/repo1/sampleapp:${{ github.sha }}
+      run: docker push codeyaazhnila/repo1:${{ github.sha }}
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.4.3
       with:
