@@ -54,11 +54,16 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+    - name: Install kubelogin
+      run: |
+        curl -sSL -o kubelogin.tar.gz https://github.com/Azure/kubelogin/releases/download/v0.0.16/kubelogin-linux-amd64.zip
+        tar -xvf kubelogin.tar.gz -C /usr/local/bin
+        chmod +x /usr/local/bin/kubelogin
+
     - name: Get AKS credentials
       run: |
-            az aks get-credentials --name aks1 --overwrite-existing --resource-group AKS
-            export KUBECONFIG=/path/to/kubeconfig
-            kubelogin convert-kubeconfig
+        az aks get-credentials --name aks1 --overwrite-existing --resource-group AKS
+        kubelogin convert-kubeconfig
 
     - name: Deploy to AKS
       run: kubectl apply -f kubernetes_deployment.yaml
