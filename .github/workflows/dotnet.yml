@@ -56,6 +56,11 @@ jobs:
 
     - name: Get AKS credentials
       run: az aks get-credentials --resource-group AKS --name aks1
+    - name: Get AKS credentials
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y kubelogin
+
 
     - name: Deploy to AKS
       run: kubectl apply -f kubernetes_deployment.yaml
