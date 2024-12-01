@@ -59,8 +59,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install unzip -y
         curl -LO https://github.com/Azure/kubelogin/releases/download/v0.0.16/kubelogin-linux-amd64.zip
-        unzip kubelogin-linux-amd64.zip -d /usr/local/bin
-        chmod +x /usr/local/bin/kubelogin
+        unzip kubelogin-linux-amd64.zip -d /usr/local/bin/
+        chmod +x /usr/local/bin/bin/linux_amd64/kubelogin
+        sudo ln -s /usr/local/bin/bin/linux_amd64/kubelogin /usr/local/bin/kubelogin
 
     - name: Get AKS credentials
       run: |
