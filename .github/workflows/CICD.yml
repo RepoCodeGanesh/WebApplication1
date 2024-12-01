@@ -67,6 +67,8 @@ jobs:
       run: |
         az aks get-credentials --name aks1 --overwrite-existing --resource-group AKS
         kubelogin convert-kubeconfig
+    - name: Substitute GITHUB_SHA in deployment manifest
+      run: sed -i 's/\${GITHUB_SHA}/'${{ github.sha }}'/g' kubernetes_deployment.yaml
 
     - name: Deploy to AKS
       run: kubectl apply -f kubernetes_deployment.yaml
