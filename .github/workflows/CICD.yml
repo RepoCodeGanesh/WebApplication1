@@ -25,7 +25,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal 
       
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag codeyaazhnila/repo1:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag codeyaazhnila/repo1:${{ github.sha }} # docker registry name
     - name: Log in to Docker Hub using PAT
       uses: docker/login-action@v3
       with:
@@ -39,7 +39,7 @@ jobs:
         name: artifact
         path: build_output/
     
-    # Added AKS deployment steps
+    # AKS deployment steps
     - name: Set up Kubernetes
       uses: azure/setup-kubectl@v3
       with:
