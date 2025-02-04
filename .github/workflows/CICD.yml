@@ -3,6 +3,7 @@
 name: Dotnet CICD
 
 on:
+  push:
   workflow_dispatch:
   
 jobs:
