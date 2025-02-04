@@ -60,7 +60,7 @@ jobs:
 
     - name: Get AKS credentials
       run: |
-          az aks get-credentials --name aks1 --overwrite-existing --resource-group AKS
+          az aks get-credentials --name Cluster1 --overwrite-existing --resource-group AKS1
           kubelogin convert-kubeconfig --login azurecli
     - name: Substitute GITHUB_SHA in deployment manifest
       run: sed -i 's/\${GITHUB_SHA}/'${{ github.sha }}'/g' kubernetes_deployment.yaml
