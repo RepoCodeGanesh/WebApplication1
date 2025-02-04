@@ -7,11 +7,11 @@ app.MapGet("/", (HttpContext context) =>
     return @"
     <html>
     <head>
-        <title>About Elephants</title>
+        <title>Article about Elephants</title>
     </head>
     <body>
         <h1>Elephants</h1>
-        <img src='https://files.worldwildlife.org/wwfcmsprod/images/African_elephant_YE2021_Karine_Aigner_5kzx389mvt/magazine_small/1s803ne5x2_elephantv2.jpg' style='width:50%;height:auto;' />
+        <img src='https://files.worldwildlife.org/wwfcmsprod/images/African_elephant_YE2021_Karine_Aigner_5kzx389mvt/magazine_small/1s803ne5x2_elephantv2.jpg' style='width:25%;height:auto;' />
         <p>Elephants are the largest land animals on Earth. They are known for their intelligence, social behavior, and strong familial bonds. Elephants are native to Africa and Asia, and they play a crucial role in their ecosystems.</p>
         <h2>Types of Elephants</h2>
         <p>There are three main species of elephants:</p>
