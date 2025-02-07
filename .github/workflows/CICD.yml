@@ -16,7 +16,18 @@ jobs:
 
 
     - uses: actions/checkout@v4
-    
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --output build_output
+    - name: Test
+      run: dotnet test --no-build --verbosity normal 
+      
     # Add CodeQL analysis step start
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
@@ -31,17 +42,6 @@ jobs:
  
       # Add CodeQL analysis end
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore --output build_output
-    - name: Test
-      run: dotnet test --no-build --verbosity normal 
-      
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag codeyaazhnila/repo1:${{ github.sha }} # docker registry name
     - name: Log in to Docker Hub using PAT
