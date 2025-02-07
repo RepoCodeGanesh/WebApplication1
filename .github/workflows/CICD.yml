@@ -13,6 +13,24 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
+
+    - uses: actions/checkout@v4
+    
+    # Add CodeQL analysis step start
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: csharp
+        
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+ 
+      # Add CodeQL analysis end
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
