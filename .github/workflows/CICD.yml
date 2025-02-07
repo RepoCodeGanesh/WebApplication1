@@ -77,3 +77,6 @@ jobs:
 
     - name: Deploy to AKS
       run: kubectl apply -f kubernetes_deployment.yaml
+permissions:
+  contents: read
+  security-events: write
