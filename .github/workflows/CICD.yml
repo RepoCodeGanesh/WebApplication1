@@ -13,10 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-
-
-    - uses: actions/checkout@v4
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -27,21 +23,16 @@ jobs:
       run: dotnet build --no-restore --output build_output
     - name: Test
       run: dotnet test --no-build --verbosity normal 
-      
-    # Add CodeQL analysis step start
+ # Add CodeQL analysis step start
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
         languages: csharp
-        
+
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
+    # Add CodeQL analysis end
       
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
- 
-      # Add CodeQL analysis end
-
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag codeyaazhnila/repo1:${{ github.sha }} # docker registry name
     - name: Log in to Docker Hub using PAT
